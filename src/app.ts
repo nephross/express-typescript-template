@@ -8,14 +8,16 @@ import * as cors from 'cors';
 
 import HttpError from './lib/utils/http-error';
 // routes
-import api from './routes/api';
+import Api from './routes/api';
 
 class App {
   public express: express.Application;
+  private _api: Api;
 
   // Run configurationmethods for the Express instance.
   constructor() {
     this.express = express();
+    this._api = new Api();
     this.middleware();
     this.routes();
   }
@@ -33,7 +35,7 @@ class App {
 
   private routes() {
     // Setup api router
-    this.express.use('/api', api);
+    this.express.use('/api', this._api.router);
 
     // Base route
     this.express.get('/', (req: express.Request, res: express.Response, next: express.NextFunction) => {

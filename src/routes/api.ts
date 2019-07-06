@@ -4,7 +4,7 @@ import {Router} from 'express';
 import ExampleRouter from './example/example-router';
 
 class Api {
-  private router: Router;
+  public router: Router;
   private exampleRouter: ExampleRouter;
 
   constructor() {
