@@ -2,18 +2,73 @@
   "name": "express-typescript-template",
   "version": "0.0.1",
   "description": "A NodeJS express template built using Typescript",
-  "main": "index.js",
+  "main": "/dist/bin/www.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "NODE_ENV=testing npm run clear:dist && npm run build && npm run testonly",
+    "clear:dist": "rimraf ./dist",
+    "build": "tsc -p tsconfig.json",
+    "watch": "tsc --w",
+    "start": "node ./dist/bin/www",
+    "dev": "concurrently --kill-others \"npm run watch\" \"nodemon dist/bin/www\"",
+    "testonly": "NODE_ENV=testing ./node_modules/mocha/bin/mocha ./dist/test/global.tests.js $(find ./dist/test -path '*.tests.js')  --reporter spec"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nephross/express-typescript-template.git"
+  },
+  "private": true,
+  "engine": {
+    "node": ">=10.12.0"
   },
   "author": "Peter Dalgaard-Jensen",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/nephross/express-typescript-template/issues"
   },
-  "homepage": "https://github.com/nephross/express-typescript-template#readme"
+  "homepage": "https://github.com/nephross/express-typescript-template#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "chalk": "^2.4.1",
+    "compression": "^1.7.3",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.4",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "lodash": "^4.17.10",
+    "moment": "^2.22.2",
+    "moment-timezone": "^0.5.21",
+    "morgan": "^1.9.0",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "q": "^1.5.1",
+    "request": "^2.87.0",
+    "request-promise-native": "^1.0.5",
+    "typescript": "^3.0.1",
+    "uuid": "^3.3.2",
+  },
+  "devDependencies": {
+    "@types/chai": "^4.1.4",
+    "@types/compression": "0.0.36",
+    "@types/cookie-parser": "^1.4.1",
+    "@types/cors": "^2.8.4",
+    "@types/dotenv": "^4.0.3",
+    "@types/express": "^4.16.0",
+    "@types/lodash": "^4.14.115",
+    "@types/mocha": "^5.2.5",
+    "@types/moment-timezone": "^0.5.8",
+    "@types/morgan": "^1.7.35",
+    "@types/nock": "^9.3.0",
+    "@types/node": "^10.5.5",
+    "@types/request": "^2.47.1",
+    "@types/request-promise-native": "^1.0.15",
+    "@types/uuid": "^3.4.4",
+    "chai": "^4.1.2",
+    "concurrently": "^3.6.1",
+    "mocha": "^5.2.0",
+    "mocha-typescript": "^1.1.17",
+    "nodemon": "^1.18.3",
+    "nock": "^9.4.4",
+    "rimraf": "^2.6.2",
+    "tslint": "^5.11.0"
+  }
 }
