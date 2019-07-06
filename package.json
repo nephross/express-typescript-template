@@ -44,7 +44,7 @@
     "request": "^2.87.0",
     "request-promise-native": "^1.0.5",
     "typescript": "^3.0.1",
-    "uuid": "^3.3.2",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "@types/chai": "^4.1.4",
